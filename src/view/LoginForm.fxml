@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="rootLoginForm" prefHeight="447.0" prefWidth="316.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
    <children>
       <Label layoutX="63.0" layoutY="23.0" prefHeight="50.0" prefWidth="188.0" text="Login To To-Do List" textOverrun="CENTER_ELLIPSIS" underline="true">
@@ -18,9 +17,9 @@
       </Label>
       <Label layoutX="22.0" layoutY="108.0" prefHeight="26.0" prefWidth="68.0" text="User Name" />
       <Label layoutX="22.0" layoutY="183.0" prefHeight="26.0" prefWidth="68.0" text="Password" />
-      <TextField layoutX="21.0" layoutY="141.0" prefHeight="25.0" prefWidth="271.0" />
-      <PasswordField layoutX="22.0" layoutY="224.0" prefHeight="25.0" prefWidth="271.0" />
-      <Button layoutX="93.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #182C61;" text="Login" textFill="WHITE">
+      <TextField fx:id="txtUserName" layoutX="21.0" layoutY="141.0" prefHeight="25.0" prefWidth="271.0" />
+      <PasswordField fx:id="txtPassword" layoutX="22.0" layoutY="224.0" onAction="#txtPasswordOnAction" prefHeight="25.0" prefWidth="271.0" />
+      <Button layoutX="93.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #182C61;" text="Login" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
