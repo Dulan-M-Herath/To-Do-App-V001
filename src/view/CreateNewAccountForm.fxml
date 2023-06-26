@@ -15,15 +15,15 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="23.0" layoutY="87.0" prefHeight="26.0" prefWidth="68.0" text="User Name" />
+      <Label layoutX="23.0" layoutY="87.0" prefHeight="26.0" prefWidth="76.0" text="User Name" />
       <TextField fx:id="txtUsername" layoutX="22.0" layoutY="120.0" prefHeight="25.0" prefWidth="271.0" promptText="Enter user name here" />
       <Label layoutX="24.0" layoutY="150.0" prefHeight="26.0" prefWidth="68.0" text="Email" />
       <TextField fx:id="txtEmail" layoutX="23.0" layoutY="181.0" prefHeight="25.0" prefWidth="271.0" promptText="Enter email here" />
       <Label layoutX="24.0" layoutY="211.0" prefHeight="26.0" prefWidth="68.0" text="Password" />
       <PasswordField fx:id="txtNewPassword" layoutX="23.0" layoutY="246.0" prefHeight="25.0" prefWidth="271.0" promptText="Enter new password" />
-      <Label layoutX="24.0" layoutY="275.0" prefHeight="26.0" prefWidth="103.0" text="Confirm Password" />
+      <Label layoutX="24.0" layoutY="275.0" prefHeight="26.0" prefWidth="127.0" text="Confirm Password" />
       <PasswordField fx:id="txtConfirmPassword" layoutX="24.0" layoutY="309.0" prefHeight="25.0" prefWidth="271.0" promptText="Confirm password" />
-      <Button fx:id="btnRegister" layoutX="94.0" layoutY="370.0" mnemonicParsing="false" onAction="#btnRegisterOnAction" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #27ae60;" text="Register" textFill="WHITE">
+      <Button fx:id="btnRegister" layoutX="88.0" layoutY="372.0" mnemonicParsing="false" onAction="#btnRegisterOnAction" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #27ae60;" text="Register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -31,7 +31,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label layoutX="103.0" layoutY="425.0" text="Designed By - Dulan" />
+      <Label layoutX="91.0" layoutY="423.0" text="Designed By - Dulan" />
       <Label fx:id="lblPasswordDoesntMatch1" layoutX="160.0" layoutY="271.0" prefHeight="17.0" prefWidth="134.0" text="Password doesn't match" textFill="RED">
          <font>
             <Font name="System Bold" size="11.0" />

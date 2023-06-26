@@ -50,40 +50,47 @@ public class LoginFormController {
     }
 
     public void Login(){
-        String userName = txtUserName.getText();
-        String password = txtPassword.getText();
+        if (txtUserName.getText().trim().isEmpty()){
+            txtUserName.requestFocus();
+        }else if (txtPassword.getText().trim().isEmpty()){
+            txtPassword.requestFocus();
+        }else{
+            String userName = txtUserName.getText();
+            String password = txtPassword.getText();
 
-        Connection connection = DBConnection.getInstance().getConnection();
+            Connection connection = DBConnection.getInstance().getConnection();
 
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from user where userName = ? and password = ?");
-            preparedStatement.setObject(1,userName);
-            preparedStatement.setObject(2,password);
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("select * from user where userName = ? and password = ?");
+                preparedStatement.setObject(1,userName);
+                preparedStatement.setObject(2,password);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+                ResultSet resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()){
-                name1 = resultSet.getString(2);
-                un = resultSet.getString(1);
+                if(resultSet.next()){
+                    name1 = resultSet.getString(2);
+                    un = resultSet.getString(1);
 
-                Stage stage = (Stage)rootLoginForm.getScene().getWindow();
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/ToDoForm.fxml"))));
+                    Stage stage = (Stage)rootLoginForm.getScene().getWindow();
+                    stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/ToDoForm.fxml"))));
 
 
 
-            }else {
-                Alert alert = new Alert(Alert.AlertType.ERROR,"Email or Password does not match");
-                alert.showAndWait();
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR,"Email or Password does not match");
+                    alert.showAndWait();
 
-                txtUserName.clear();
-                txtPassword.clear();
-                txtUserName.requestFocus();
+                    txtUserName.clear();
+                    txtPassword.clear();
+                    txtUserName.requestFocus();
+                }
+
+
+
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
             }
-
-
-
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
         }
+
     }
 }

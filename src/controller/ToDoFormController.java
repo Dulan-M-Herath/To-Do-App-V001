@@ -29,6 +29,7 @@ public class ToDoFormController {
     public Button btnDelete;
     public Button btnUpdate;
 
+    public String selectedToDOId = null;
     public void initialize() throws SQLException {
         txtSearch.requestFocus();
         lblGreeting.setText("Hi "+LoginFormController.name1+" welcome to To-Do list");
@@ -47,6 +48,19 @@ public class ToDoFormController {
                 btnDelete.setDisable(false);
                 btnUpdate.setDisable(false);
                 txtSearch.setDisable(false);
+
+                pane.setVisible(false);
+                txtDescription.setDisable(true);
+                btnAddToDO.setDisable(true);
+
+                ToDoTM selectedItem = (ToDoTM) lstToDo.getSelectionModel().getSelectedItem();
+
+                if(selectedItem == null){
+                    return;
+                }
+                txtSearch.setText(selectedItem.toString());
+                selectedToDOId=  selectedItem.getTodo_id();
+
             }
         });
 
@@ -58,21 +72,23 @@ public class ToDoFormController {
         Optional<ButtonType> buttonType = alert.showAndWait();
 
         if (buttonType.get().equals(ButtonType.YES)){
-
-
             Stage stage = (Stage)rootToDo.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/LoginForm.fxml"))));
         }
     }
 
     public void btnAddNewToDo(ActionEvent actionEvent) {
-        pane.setDisable(false);
-        txtDescription.requestFocus();
-        btnAddToDO.setDisable(false);
-        txtDescription.setDisable(false);
+
+        lstToDo.getSelectionModel().clearSelection();
         btnDelete.setDisable(true);
         btnUpdate.setDisable(true);
         txtSearch.setDisable(true);
+
+        pane.setVisible(true);
+        txtDescription.requestFocus();
+        btnAddToDO.setDisable(false);
+        txtDescription.setDisable(false);
+
     }
 
     public void btnAddToDoToList(ActionEvent actionEvent) {
@@ -91,6 +107,7 @@ public class ToDoFormController {
             preparedStatement.executeUpdate();
             btnAddToDO.setDisable(true);
             loadList();
+            txtDescription.clear();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -152,6 +169,48 @@ public class ToDoFormController {
 
             todos.add(obj);
         }
+
+    }
+
+    public void btnUpdateOnAction(ActionEvent actionEvent)  {
+        String selectedText = txtSearch.getText();
+
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update todo set description = ? where id = ?");
+            preparedStatement.setObject(1,selectedText);
+            preparedStatement.setObject(2,selectedToDOId);
+
+            preparedStatement.executeUpdate();
+            txtSearch.clear();
+            loadList();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void btnDeleteOnAction(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are You Sure?",ButtonType.YES,ButtonType.NO);
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if(buttonType.get().equals(ButtonType.YES)){
+            Connection connection = DBConnection.getInstance().getConnection();
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("delete from todo where id = ? ");
+                preparedStatement.setObject(1,selectedToDOId);
+                preparedStatement.executeUpdate();
+
+                loadList();
+                txtSearch.clear();
+                txtSearch.setDisable(true);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
 
     }
 }

@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="rootToDo" prefHeight="535.0" prefWidth="805.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ToDoFormController">
    <children>
       <Pane fx:id="pane" layoutX="396.0" layoutY="279.0" prefHeight="128.0" prefWidth="399.0" style="-fx-border-color: black;" />
@@ -20,8 +19,8 @@
       </Label>
       <Label fx:id="lblUserId" layoutX="717.0" layoutY="14.0" prefHeight="17.0" prefWidth="74.0" />
       <TextField fx:id="txtSearch" layoutX="401.0" layoutY="94.0" prefHeight="25.0" prefWidth="384.0" />
-      <Button fx:id="btnDelete" layoutX="511.0" layoutY="135.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE" />
-      <Button fx:id="btnUpdate" layoutX="660.0" layoutY="135.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: green;" text="Update" textFill="WHITE" />
+      <Button fx:id="btnDelete" layoutX="511.0" layoutY="135.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE" />
+      <Button fx:id="btnUpdate" layoutX="660.0" layoutY="135.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: green;" text="Update" textFill="WHITE" />
       <Separator layoutX="403.0" layoutY="208.0" prefHeight="0.0" prefWidth="384.0" />
       <Button layoutX="401.0" layoutY="234.0" mnemonicParsing="false" onAction="#btnAddNewToDo" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: blue;" text="+Add New ToDo" textFill="WHITE" />
       <TextField fx:id="txtDescription" layoutX="401.0" layoutY="305.0" prefHeight="25.0" prefWidth="384.0" />
